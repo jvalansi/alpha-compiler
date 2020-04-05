@@ -111,7 +111,7 @@ def from_crsp_dump(file_name, start=None, end=None):
                                                row0["PRIMEXCH"]))
 
             if HURRICANE_SANDY_ER in df_tkr.index:
-                print 'contains HURRICANE Sandy'
+                print('contains HURRICANE Sandy')
                 # copy dividend dates
                 df_tkr.loc[HURRICANE_SANDY_FD, DIV_COLUMNS] = df_tkr.loc[HURRICANE_SANDY_ER, DIV_COLUMNS].values
                 # delete extra day
@@ -129,7 +129,7 @@ def from_crsp_dump(file_name, start=None, end=None):
                 print len(this_cal), df_tkr.shape[0]  # the ticker has more rows than the calendar (traded on non-trading day?)
                 emptyDF = pd.DataFrame(index=this_cal)
                 emptyDF.index.tz = None
-                print "MISSING interstitial dates for: %s please fix" % row0["TSYMBOL"]
+                print("MISSING interstitial dates for: %s please fix" % row0["TSYMBOL"])
                 print df_tkr.join(emptyDF, how='outer')
                 missing_dates = set(emptyDF.index) - set(df_tkr.index)
                 print "dates missing: ", missing_dates
